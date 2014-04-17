@@ -1,0 +1,151 @@
+\hypertarget{classtask__sink}{\section{task\+\_\+sink Class Reference}
+\label{classtask__sink}\index{task\+\_\+sink@{task\+\_\+sink}}
+}
+
+
+{\ttfamily \#include $<$task\+\_\+sink.\+h$>$}
+
+Inheritance diagram for task\+\_\+sink\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classtask__sink}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classtask__sink_af0700c1b88de258c45dd3a65f91ac5d0}{task\+\_\+sink} (const char $\ast$, unsigned port\+B\+A\+S\+E\+\_\+\+T\+Y\+P\+E, size\+\_\+t, emstream $\ast$)
+\item 
+void \hyperlink{classtask__sink_a90497d9f3e918301d3643181e6e8a42d}{run} (void)
+\item 
+void \hyperlink{classtask__sink_a13ab68837b0138fb6dbd488dff4e6175}{show\+\_\+errors} (void)
+\item 
+void \hyperlink{classtask__sink_a16c0c8249299c81490190d0a2a13f7ee}{print\+\_\+status} (emstream \&)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+emstream $\ast$ \hyperlink{classtask__sink_a5be4e7bc37be54c830b3b6506e4db228}{p\+\_\+serial}
+\item 
+\hypertarget{classtask__sink_a54a5f4b35917d43023ea9cfdbe32c476}{uint32\+\_\+t \hyperlink{classtask__sink_a54a5f4b35917d43023ea9cfdbe32c476}{queue\+\_\+errors}}\label{classtask__sink_a54a5f4b35917d43023ea9cfdbe32c476}
+
+\begin{DoxyCompactList}\small\item\em This is the number of errors in the queued data. \end{DoxyCompactList}\item 
+\hypertarget{classtask__sink_ab6a9c33c4bd8f29f132aa48d401006c1}{uint32\+\_\+t \hyperlink{classtask__sink_ab6a9c33c4bd8f29f132aa48d401006c1}{share\+\_\+errors}}\label{classtask__sink_ab6a9c33c4bd8f29f132aa48d401006c1}
+
+\begin{DoxyCompactList}\small\item\em This is the number of errors in the data shared by frt\+\_\+shared\+\_\+data. \end{DoxyCompactList}\item 
+\hypertarget{classtask__sink_a7f9226aad37d173f2a4a8984dd75a2ff}{uint32\+\_\+t \hyperlink{classtask__sink_a7f9226aad37d173f2a4a8984dd75a2ff}{global\+\_\+errors}}\label{classtask__sink_a7f9226aad37d173f2a4a8984dd75a2ff}
+
+\begin{DoxyCompactList}\small\item\em This is the number of errors in the data shared by a global variable. \end{DoxyCompactList}\item 
+\hypertarget{classtask__sink_a7a6ec91711e4a788668044c5a9f9f96a}{uint32\+\_\+t \hyperlink{classtask__sink_a7a6ec91711e4a788668044c5a9f9f96a}{runs}}\label{classtask__sink_a7a6ec91711e4a788668044c5a9f9f96a}
+
+\begin{DoxyCompactList}\small\item\em This is the number of runs around the task loop. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This task reads measurements that were taken by the data acquisition task in task\+\_\+daq.$\ast$ and puts those measurements into a queue. 
+
+Definition at line 52 of file task\+\_\+sink.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classtask__sink_af0700c1b88de258c45dd3a65f91ac5d0}{\index{task\+\_\+sink@{task\+\_\+sink}!task\+\_\+sink@{task\+\_\+sink}}
+\index{task\+\_\+sink@{task\+\_\+sink}!task\+\_\+sink@{task\+\_\+sink}}
+\subsubsection[{task\+\_\+sink}]{\setlength{\rightskip}{0pt plus 5cm}task\+\_\+sink\+::task\+\_\+sink (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{a\+\_\+name, }
+\item[{unsigned port\+B\+A\+S\+E\+\_\+\+T\+Y\+P\+E}]{a\+\_\+priority, }
+\item[{size\+\_\+t}]{a\+\_\+stack\+\_\+size, }
+\item[{emstream $\ast$}]{p\+\_\+ser\+\_\+dev}
+\end{DoxyParamCaption}
+)}}\label{classtask__sink_af0700c1b88de258c45dd3a65f91ac5d0}
+This constructor creates a new data sink task. Its main job is to call the parent class's constructor which does most of the work. 
+\begin{DoxyParams}{Parameters}
+{\em a\+\_\+name} & A character string which will be the name of this task \\
+\hline
+{\em a\+\_\+priority} & The priority at which this task will initially run (default\+: 0) \\
+\hline
+{\em a\+\_\+stack\+\_\+size} & The size of this task's stack in bytes (default\+: config\+M\+I\+N\+I\+M\+A\+L\+\_\+\+S\+T\+A\+C\+K\+\_\+\+S\+I\+Z\+E) \\
+\hline
+{\em p\+\_\+ser\+\_\+dev} & Pointer to a serial device (port, radio, S\+D card, etc.) which can be used by this task to communicate (default\+: N\+U\+L\+L) \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 44 of file task\+\_\+sink.\+cpp.
+
+
+
+References global\+\_\+errors, queue\+\_\+errors, runs, and share\+\_\+errors.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classtask__sink_a16c0c8249299c81490190d0a2a13f7ee}{\index{task\+\_\+sink@{task\+\_\+sink}!print\+\_\+status@{print\+\_\+status}}
+\index{print\+\_\+status@{print\+\_\+status}!task\+\_\+sink@{task\+\_\+sink}}
+\subsubsection[{print\+\_\+status}]{\setlength{\rightskip}{0pt plus 5cm}void task\+\_\+sink\+::print\+\_\+status (
+\begin{DoxyParamCaption}
+\item[{emstream \&}]{ser\+\_\+thing}
+\end{DoxyParamCaption}
+)}}\label{classtask__sink_a16c0c8249299c81490190d0a2a13f7ee}
+This method prints information about the status of this task. It is called by the overloaded \char`\"{}$<$$<$\char`\"{} operator so that when the task prints itself to a serial device, whatever this method wants printed gets printed. 
+\begin{DoxyParams}{Parameters}
+{\em ser\+\_\+thing} & The serial device to which information will be printed \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 139 of file task\+\_\+sink.\+cpp.
+
+
+
+References global\+\_\+errors, queue\+\_\+errors, runs, and share\+\_\+errors.
+
+\hypertarget{classtask__sink_a90497d9f3e918301d3643181e6e8a42d}{\index{task\+\_\+sink@{task\+\_\+sink}!run@{run}}
+\index{run@{run}!task\+\_\+sink@{task\+\_\+sink}}
+\subsubsection[{run}]{\setlength{\rightskip}{0pt plus 5cm}void task\+\_\+sink\+::run (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classtask__sink_a90497d9f3e918301d3643181e6e8a42d}
+This run method is called by the R\+T\+O\+S and contains a loop in which the task checks for data and sends it if appropriate.
+
+This method receives data from the data acquisition task in a queue and sends the information or saves it, depending on what its serial device pointer points to. 
+
+Definition at line 79 of file task\+\_\+sink.\+cpp.
+
+
+
+References global\+\_\+errors, p\+\_\+glob\+\_\+of\+\_\+probs, p\+\_\+queue\+\_\+1, p\+\_\+share\+\_\+1, print\+\_\+ser\+\_\+queue, queue\+\_\+errors, runs, and share\+\_\+errors.
+
+\hypertarget{classtask__sink_a13ab68837b0138fb6dbd488dff4e6175}{\index{task\+\_\+sink@{task\+\_\+sink}!show\+\_\+errors@{show\+\_\+errors}}
+\index{show\+\_\+errors@{show\+\_\+errors}!task\+\_\+sink@{task\+\_\+sink}}
+\subsubsection[{show\+\_\+errors}]{\setlength{\rightskip}{0pt plus 5cm}void task\+\_\+sink\+::show\+\_\+errors (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classtask__sink_a13ab68837b0138fb6dbd488dff4e6175}
+This method prints out the number of data errors we've seen by each method of sending data from the source task to this one. 
+
+Definition at line 66 of file task\+\_\+sink.\+cpp.
+
+
+
+References global\+\_\+errors, print\+\_\+ser\+\_\+queue, queue\+\_\+errors, and share\+\_\+errors.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classtask__sink_a5be4e7bc37be54c830b3b6506e4db228}{\index{task\+\_\+sink@{task\+\_\+sink}!p\+\_\+serial@{p\+\_\+serial}}
+\index{p\+\_\+serial@{p\+\_\+serial}!task\+\_\+sink@{task\+\_\+sink}}
+\subsubsection[{p\+\_\+serial}]{\setlength{\rightskip}{0pt plus 5cm}emstream$\ast$ task\+\_\+sink\+::p\+\_\+serial\hspace{0.3cm}{\ttfamily [protected]}}}\label{classtask__sink_a5be4e7bc37be54c830b3b6506e4db228}
+This pointer allows debugging messages to be sent out as this task sets itself up, unless it's left as N\+U\+L\+L in the constructor, in which case it does nothing. 
+
+Definition at line 60 of file task\+\_\+sink.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{task__sink_8h}{task\+\_\+sink.\+h}\item 
+\hyperlink{task__sink_8cpp}{task\+\_\+sink.\+cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,45 @@
+\hypertarget{task__source_8h}{\section{task\+\_\+source.\+h File Reference}
+\label{task__source_8h}\index{task\+\_\+source.\+h@{task\+\_\+source.\+h}}
+}
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}Free\+R\+T\+O\+S.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}task.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}queue.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}rs232int.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}time\+\_\+stamp.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}frt\+\_\+task.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}frt\+\_\+queue.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}frt\+\_\+text\+\_\+queue.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}frt\+\_\+shared\+\_\+data.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}shares.\+h\char`\"{}}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classtask__source}{task\+\_\+source}
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const port\+Tick\+Type \hyperlink{task__source_8h_ab24af5f6e613475c5532218fe73d0cde}{D\+E\+F\+\_\+\+T\+I\+C\+K\+S\+\_\+\+P\+E\+R\+\_\+\+R\+U\+N} = config\+T\+I\+C\+K\+\_\+\+R\+A\+T\+E\+\_\+\+H\+Z
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This file contains the header for a task which sends test data to another task, the data sink task, using a queue, a shared data class object, and a dangerous global variable. The data will be checked to test the reliability of each method of conveying the information.
+
+Revisions\+: \begin{DoxyItemize}
+\item 09-\/30-\/2012 J\+R\+R Original file was a one-\/file demonstration with two tasks \item 10-\/05-\/2012 J\+R\+R Split into multiple files, one for each task \item 11-\/04-\/2012 J\+R\+R Changed into the test data source task\end{DoxyItemize}
+License\+: This file is copyright 2012 by J\+R Ridgely and released under the Lesser G\+N\+U Public License, version 2. It intended for educational use only, but its use is not limited thereto. 
+
+Definition in file \hyperlink{task__source_8h_source}{task\+\_\+source.\+h}.
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{task__source_8h_ab24af5f6e613475c5532218fe73d0cde}{\index{task\+\_\+source.\+h@{task\+\_\+source.\+h}!D\+E\+F\+\_\+\+T\+I\+C\+K\+S\+\_\+\+P\+E\+R\+\_\+\+R\+U\+N@{D\+E\+F\+\_\+\+T\+I\+C\+K\+S\+\_\+\+P\+E\+R\+\_\+\+R\+U\+N}}
+\index{D\+E\+F\+\_\+\+T\+I\+C\+K\+S\+\_\+\+P\+E\+R\+\_\+\+R\+U\+N@{D\+E\+F\+\_\+\+T\+I\+C\+K\+S\+\_\+\+P\+E\+R\+\_\+\+R\+U\+N}!task\+\_\+source.\+h@{task\+\_\+source.\+h}}
+\subsubsection[{D\+E\+F\+\_\+\+T\+I\+C\+K\+S\+\_\+\+P\+E\+R\+\_\+\+R\+U\+N}]{\setlength{\rightskip}{0pt plus 5cm}const port\+Tick\+Type D\+E\+F\+\_\+\+T\+I\+C\+K\+S\+\_\+\+P\+E\+R\+\_\+\+R\+U\+N = config\+T\+I\+C\+K\+\_\+\+R\+A\+T\+E\+\_\+\+H\+Z}}\label{task__source_8h_ab24af5f6e613475c5532218fe73d0cde}
+This is the default number of R\+T\+O\+S ticks per run of this task. If this constant is set to 100, for example, and the R\+T\+O\+S clock runs at 1000 Hz, then this task will run 10 times per second. This is the default value used at program startup; it's copied into a variable so that the rate of this task can be varied as needed. 
+
+Definition at line 54 of file task\+\_\+source.\+h.
+
