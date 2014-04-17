@@ -78,6 +78,9 @@ protected:
 	// This method displays information about the status of the system
 	void show_status (void);
 
+   void motor_menu (void);
+	void motor_settings (void);
+
 public:
 	// This constructor creates a user interface task object
 	task_user (const char*, unsigned portBASE_TYPE, size_t, emstream*);

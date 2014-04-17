@@ -51,6 +51,7 @@
 #include "task_source.h"                    // Header for data sending task
 #include "task_sink.h"                      // Header for data receiving task
 #include "task_user.h"                      // Header for user interface task
+#include "task_motor.h"
 
 
 /** This is the number of tasks which will be instantiated from the task_multi class.
@@ -82,6 +83,12 @@ frt_queue<uint32_t>* p_queue_1;
  *  the sink task.
  */
 shared_data<uint32_t>* p_share_1;
+shared_data<int16_t>* motor_power_1;
+shared_data<int16_t>* motor_power_2;
+shared_data<bool>* brake_1;
+shared_data<bool>* brake_2;
+shared_data<bool>* pot_1;
+shared_data<bool>* pot_2;
 
 /** This global variable will be written by the source task and read by the sink task.
  *  We expect the process to be corrupted by context switches now and then.
@@ -121,12 +128,27 @@ int main (void)
 	print_ser_queue = new frt_text_queue (32, &ser_port, 10);
 	p_queue_1 = new frt_queue<uint32_t> (20);
 	p_share_1 = new shared_data<uint32_t>;
+	motor_power_1 = new shared_data<int16_t>;
+	motor_power_2 = new shared_data<int16_t>;
+	brake_1 = new shared_data<bool>;
+	brake_2 = new shared_data<bool>;
+	pot_1 = new shared_data<bool>;
+	pot_2 = new shared_data<bool>;
 	p_glob_of_probs = new uint32_t;
 	p_rate_1 = new shared_data<float>;
 
+
+   // (1 << COM1A1) | (1 << COM1B1) | (1 << COM1C1) | (1 << WGM10) Fast PWM 8-bit
+   // (1 << WGM12) | (1 << CS11) | (1 << CS10) clk/64 (prescaler)
+   // outputs 16E6/64/255 = 980Hz PWM
+   motor_driver *p_my_motor_driver1 = new motor_driver(&ser_port, &DDRC, 0x07, &DDRB, 0x40, &PORTC, 0x04, &TCCR1A, 0xA9, &TCCR1B, 0x0B, &OCR1B);
+   motor_driver *p_my_motor_driver2 = new motor_driver(&ser_port, &DDRD, 0xE0, &DDRB, 0x20, &PORTD, 0x80, &TCCR1A, 0xA9, &TCCR1B, 0x0B, &OCR1A);
+
+   new task_motor ("Motor1", tskIDLE_PRIORITY + 2, 240, 3, p_my_motor_driver1, brake_1, motor_power_1, &ser_port);
+   new task_motor ("Motor2", tskIDLE_PRIORITY + 2, 240, 4, p_my_motor_driver2, brake_2, motor_power_2, &ser_port);
 	// Create the data source and sink tasks
-	new task_source ("Source", tskIDLE_PRIORITY + 2, 220, &ser_port);
-	new task_sink ("Sink", tskIDLE_PRIORITY + 2, 160, &ser_port);
+	// new task_source ("Source", tskIDLE_PRIORITY + 2, 220, &ser_port);
+	// new task_sink ("Sink", tskIDLE_PRIORITY + 2, 160, &ser_port);
 
 	// The user interface is at low priority; it could have been run in the idle task
 	// but it is desired to exercise the RTOS more thoroughly in this test program.
@@ -134,16 +156,16 @@ int main (void)
 
 	// Create a set of tasks from the task_multi class. This is to test how things work
 	// when there are a whole bunch of tasks operating
-	for (uint8_t index = 0; index < N_MULTI_TASKS; index++)
-	{
-		strcpy (multi_task_name, "Multi");
-		itoa (index, (multi_task_name + 5), 10);
+	// for (uint8_t index = 0; index < N_MULTI_TASKS; index++)
+	// {
+	// 	strcpy (multi_task_name, "Multi");
+	// 	itoa (index, (multi_task_name + 5), 10);
 
-		new task_multi (multi_task_name, tskIDLE_PRIORITY + 1, 120, &ser_port);
-	}
+	// 	new task_multi (multi_task_name, tskIDLE_PRIORITY + 1, 120, &ser_port);
+	// }
 
 	// Print a list of tasks along with status information
-// 	print_task_list (&ser_port);
+   // print_task_list (&ser_port);
 
 	// Print an empty line so that there's space between task hellos and help message
 	ser_port << endl;

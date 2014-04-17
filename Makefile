@@ -30,7 +30,7 @@ TARGET = test_main
 
 # A list of the source (.c, .cc, .cpp) files in the project, including $(TARGET). Files
 # in library subdirectories do not go in this list; they're automatically in LIB_OBJS
-SRC = $(TARGET).cpp task_user.cpp task_multi.cpp task_source.cpp task_sink.cpp
+SRC = $(TARGET).cpp task_user.cpp task_motor.cpp motor_driver.cpp adc.cpp
 
 # Clock frequency of the CPU, in Hz. This number should be an unsigned long integer.
 # For example, 16 MHz would be represented as 16000000UL. 

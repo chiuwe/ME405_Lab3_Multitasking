@@ -76,6 +76,7 @@ void task_user::run (void)
 {
 	char char_in;							// Character read from serial device
 	time_stamp a_time;						// Holds the time so it can be displayed
+	uint8_t select = 1;
 
 	// Right before running the loop, print the help message so the user knows which 
 	// keys to press to do something
@@ -108,6 +109,12 @@ void task_user::run (void)
 				case 'v':
 					show_status ();
 					break;
+
+				// Pressing 'm' gives the motor setting menu
+				case 'm':
+				   motor_menu ();
+				   motor_settings ();
+				   break;
 
 				// A '?' or 'h' is a plea for help; respond with a help message
 				case '?':
@@ -160,6 +167,7 @@ void task_user::print_help_message (void)
 	*p_serial << PMS (" n:  Show the real time NOW") << endl;
 	*p_serial << PMS (" v:  Show program version and setup") << endl;
 	*p_serial << PMS (" s:  Dump all tasks' stacks") << endl;
+	*p_serial << RMS (" m:  Motor settings") << endl;
 	*p_serial << PMS (" h:  Print this help message") << endl;
 	*p_serial << PMS ("^C:  Reboot the AVR") << endl;
 }
@@ -223,5 +231,20 @@ void task_user::print_status (emstream& ser_thing)
 
 	// Now add the additional data
 	ser_thing << "\t " << runs << PMS (" runs");
+}
+
+void task_user::motor_menu (void)
+{
+   *p_serial << PMS ("Motor Settings") << endl;
+   *p_serial << RMS ("Motor Selected: ") << select << endl;
+	*p_serial << PMS (" s:  Change motor selected") << endl;
+	*p_serial << PMS (" p:  Change power setting") << endl;
+	*p_serial << RMS (" b:  Brake selected motor") << endl;
+	*p_serial << RMS (" x:  Exit motor setting menu") << endl;
+}
+
+void task_user::motor_settings (void)
+{
+
 }
 
