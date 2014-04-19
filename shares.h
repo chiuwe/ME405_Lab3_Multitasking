@@ -107,8 +107,8 @@ extern frt_queue<uint32_t>* p_queue_1;
  *  the sink task.
  */
 extern shared_data<uint32_t>* p_share_1;
-extern shared_data<int16_t>* motor_power_1;
-extern shared_data<int16_t>* motor_power_2;
+extern shared_data<int16_t>* power_1;
+extern shared_data<int16_t>* power_2;
 extern shared_data<bool>* brake_1;
 extern shared_data<bool>* brake_2;
 extern shared_data<bool>* pot_1;

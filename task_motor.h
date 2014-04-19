@@ -63,6 +63,9 @@ protected:
    uint8_t brake_pin;
    motor_driver* driver;
    shared_data<bool>* brake;
+   shared_data<int16_t>* power;
+   shared_data<bool>* pot;
+
 
 public:
    uint32_t runs;                   ///< How many times through the task loop

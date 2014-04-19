@@ -62,11 +62,11 @@ void task_motor::run (void) {
       if (PINC & (1 << brake_pin) || brake->get()) {
          driver->brake();
       } else {
-         if (pot) {
+         if (pot->get()) {
             a2d_reading = p_my_adc->read_once(0);
             driver->set_power((a2d_reading / 2) - 255);
          } else {
-            driver->set_power(power);
+            driver->set_power(power->get());
          }
       }
    }

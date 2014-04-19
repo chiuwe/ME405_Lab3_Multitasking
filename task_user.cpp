@@ -37,6 +37,7 @@
  *  The duration is calculated to be about 5 ms.
  */
 const portTickType ticks_to_delay = ((configTICK_RATE_HZ / 1000) * 5);
+bool motor_select;
 
 
 //-------------------------------------------------------------------------------------
@@ -76,7 +77,6 @@ void task_user::run (void)
 {
 	char char_in;							// Character read from serial device
 	time_stamp a_time;						// Holds the time so it can be displayed
-	uint8_t select = 1;
 
 	// Right before running the loop, print the help message so the user knows which 
 	// keys to press to do something
@@ -167,7 +167,7 @@ void task_user::print_help_message (void)
 	*p_serial << PMS (" n:  Show the real time NOW") << endl;
 	*p_serial << PMS (" v:  Show program version and setup") << endl;
 	*p_serial << PMS (" s:  Dump all tasks' stacks") << endl;
-	*p_serial << RMS (" m:  Motor settings") << endl;
+	*p_serial << PMS (" m:  Motor settings") << endl;
 	*p_serial << PMS (" h:  Print this help message") << endl;
 	*p_serial << PMS ("^C:  Reboot the AVR") << endl;
 }
@@ -235,16 +235,59 @@ void task_user::print_status (emstream& ser_thing)
 
 void task_user::motor_menu (void)
 {
+	bool pot_state  = motor_select ? pot_2->get() : pot_1->get();
    *p_serial << PMS ("Motor Settings") << endl;
-   *p_serial << RMS ("Motor Selected: ") << select << endl;
-	*p_serial << PMS (" s:  Change motor selected") << endl;
+   *p_serial << PMS ("Motor Selected: ") << motor_select + 1 << endl;
+   *p_serial << PMS ("Potentiometer State: ") << (pot_state ? "on" : "off") << endl;
+  	*p_serial << PMS (" s:  Switch selected motor") << endl;
+  	*p_serial << PMS (" w:  Switch potentiometer state") << endl;
 	*p_serial << PMS (" p:  Change power setting") << endl;
-	*p_serial << RMS (" b:  Brake selected motor") << endl;
-	*p_serial << RMS (" x:  Exit motor setting menu") << endl;
+	*p_serial << PMS (" r:  Run selected motor") << endl;
+	*p_serial << PMS (" b:  Brake selected motor") << endl;
+	*p_serial << PMS (" x:  Exit motor setting menu") << endl;
 }
 
 void task_user::motor_settings (void)
 {
+	char char_in;
+	char buf[10];
+	int i = 0;
 
+	while (!p_serial->check_for_char());
+
+	char_in = p_serial->getchar();
+
+   switch (char_in)
+   {
+   	case 's':
+   		motor_select = !motor_select;
+   	   break;
+   	case 'w':
+   		motor_select ? pot_2->put(!pot_2) : pot_1->put(!pot_1);
+   	case 'p':
+   	   *p_serial << PMS ("Enter power value [-255, 255]: ");
+   	   // TODO: add pot reading from somwhere.
+   	   while (!p_serial->check_for_char());
+   	   while ((char_in = p_serial->getchar()))
+   	   {
+   	   	buf[i] = char_in;
+   	   	i++;
+   	   }
+   	   motor_select ? power_2->put(atoi(buf)) : power_1->put(atoi(buf));
+   		break;
+   	case 'r':
+   	    motor_select ? brake_2->put(false) : brake_1->put(false);
+   	   break;
+   	case 'b':
+   	   motor_select ? brake_2->put(true) : brake_1->put(true);
+   		break;
+   	case 'x':
+   		print_help_message();
+   	   break;
+   	default:
+   		p_serial->putchar (char_in);
+			*p_serial << PMS (":WTF?") << endl;
+   	   break;
+   }
 }
 

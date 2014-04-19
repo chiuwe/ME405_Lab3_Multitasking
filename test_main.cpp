@@ -83,8 +83,8 @@ frt_queue<uint32_t>* p_queue_1;
  *  the sink task.
  */
 shared_data<uint32_t>* p_share_1;
-shared_data<int16_t>* motor_power_1;
-shared_data<int16_t>* motor_power_2;
+shared_data<int16_t>* power_1;
+shared_data<int16_t>* power_2;
 shared_data<bool>* brake_1;
 shared_data<bool>* brake_2;
 shared_data<bool>* pot_1;
@@ -110,7 +110,7 @@ shared_data<float>* p_rate_1;
 
 int main (void)
 {
-	char multi_task_name[12];				// Stores name for multiple tasks
+	// char multi_task_name[12];				// Stores name for multiple tasks
 
 	// Disable the watchdog timer unless it's needed later. This is important because
 	// sometimes the watchdog timer may have been left on...and it tends to stay on
@@ -128,8 +128,8 @@ int main (void)
 	print_ser_queue = new frt_text_queue (32, &ser_port, 10);
 	p_queue_1 = new frt_queue<uint32_t> (20);
 	p_share_1 = new shared_data<uint32_t>;
-	motor_power_1 = new shared_data<int16_t>;
-	motor_power_2 = new shared_data<int16_t>;
+	power_1 = new shared_data<int16_t>;
+	power_2 = new shared_data<int16_t>;
 	brake_1 = new shared_data<bool>;
 	brake_2 = new shared_data<bool>;
 	pot_1 = new shared_data<bool>;
@@ -144,8 +144,8 @@ int main (void)
    motor_driver *p_my_motor_driver1 = new motor_driver(&ser_port, &DDRC, 0x07, &DDRB, 0x40, &PORTC, 0x04, &TCCR1A, 0xA9, &TCCR1B, 0x0B, &OCR1B);
    motor_driver *p_my_motor_driver2 = new motor_driver(&ser_port, &DDRD, 0xE0, &DDRB, 0x20, &PORTD, 0x80, &TCCR1A, 0xA9, &TCCR1B, 0x0B, &OCR1A);
 
-   new task_motor ("Motor1", tskIDLE_PRIORITY + 2, 240, 3, p_my_motor_driver1, brake_1, motor_power_1, &ser_port);
-   new task_motor ("Motor2", tskIDLE_PRIORITY + 2, 240, 4, p_my_motor_driver2, brake_2, motor_power_2, &ser_port);
+   new task_motor ("Motor1", tskIDLE_PRIORITY + 2, 240, 3, p_my_motor_driver1, brake_1, power_1, pot_1, &ser_port);
+   new task_motor ("Motor2", tskIDLE_PRIORITY + 2, 240, 4, p_my_motor_driver2, brake_2, power_2, pot_2, &ser_port);
 	// Create the data source and sink tasks
 	// new task_source ("Source", tskIDLE_PRIORITY + 2, 220, &ser_port);
 	// new task_sink ("Sink", tskIDLE_PRIORITY + 2, 160, &ser_port);
