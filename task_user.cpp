@@ -67,10 +67,9 @@ task_user::task_user (const char* a_name,
 
 
 //-------------------------------------------------------------------------------------
-/** This task interacts with the user for force him/her to do what he/she is told. It
- *  also forces the data acquisition task to do what it is told. What a rude task this
- *  is. This method is the one which runs continuously and performs the functions
- *  described above. 
+/** This task is the main loop that runs the menu. You can chose options from 
+	the main menu, including printing the time, version, and stack, or you can
+	go to the motor menu implemented in motor_menu()
  */
 
 void task_user::run (void)
@@ -158,7 +157,8 @@ void task_user::run (void)
 
 
 //-------------------------------------------------------------------------------------
-/** This method prints a simple help message.
+/** This method prints out the diferent options for the main menu imlpmented in run(). 
+	It shows the possible inputs it accepts as well as what they do.
  */
 
 void task_user::print_help_message (void)
@@ -233,6 +233,10 @@ void task_user::print_status (emstream& ser_thing)
 	ser_thing << "\t " << runs << PMS (" runs");
 }
 
+/**
+	This method prints out the diferent options for the motor menu imlpmented in run(). 
+	It shows the possible inputs it accepts as well as what they do.
+ */
 void task_user::motor_menu (void)
 {
 	bool pot_state  = motor_select ? pot_2->get() : pot_1->get();
@@ -247,6 +251,11 @@ void task_user::motor_menu (void)
 	*p_serial << PMS (" x:  Exit motor setting menu") << endl;
 }
 
+/**
+	This function is the implementation of the motor menu. Given correct inputs it will let you
+	change motor, change pot state, change power settings, run the brakes, and switch back to
+	the main menu. Incorrect input are more or less ignored
+*/
 void task_user::motor_settings (void)
 {
 	char char_in;

@@ -20,8 +20,14 @@
  *  @param a_priority The priority at which this task will initially run (default: 0)
  *  @param a_stack_size The size of this task's stack in bytes 
  *                      (default: configMINIMAL_STACK_SIZE)
+ *  @param brake_mask 
+ *  @param p_driver 
+ *  @param p_brake 
+ *  @param p_power 
+ *  @param p_pot 
  *  @param p_ser_dev Pointer to a serial device (port, radio, SD card, etc.) which can
  *                   be used by this task to communicate (default: NULL)
+ *  
  */
 
 task_motor::task_motor (const char* a_name, 
@@ -72,6 +78,7 @@ void task_motor::run (void) {
    }
    delay (100);
 }
+
 
 void task_motor::print_status (emstream& ser_thing) {
    // Call the parent task's printing function first

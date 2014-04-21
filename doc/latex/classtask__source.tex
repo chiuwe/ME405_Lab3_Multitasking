@@ -1,113 +1,107 @@
-\hypertarget{classtask__source}{\section{task\+\_\+source Class Reference}
-\label{classtask__source}\index{task\+\_\+source@{task\+\_\+source}}
+\hypertarget{classtask__source}{\section{task\-\_\-source \-Class \-Reference}
+\label{classtask__source}\index{task\-\_\-source@{task\-\_\-source}}
 }
 
 
-{\ttfamily \#include $<$task\+\_\+source.\+h$>$}
+{\ttfamily \#include $<$task\-\_\-source.\-h$>$}
 
-Inheritance diagram for task\+\_\+source\+:\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[height=2.000000cm]{classtask__source}
-\end{center}
-\end{figure}
-\subsection*{Public Member Functions}
+\subsection*{\-Public \-Member \-Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classtask__source_aae32ac2cf2c64de37e329b660be59c34}{task\+\_\+source} (const char $\ast$, unsigned port\+B\+A\+S\+E\+\_\+\+T\+Y\+P\+E, size\+\_\+t, emstream $\ast$)
+\hyperlink{classtask__source_aae32ac2cf2c64de37e329b660be59c34}{task\-\_\-source} (const char $\ast$, unsigned port\-B\-A\-S\-E\-\_\-\-T\-Y\-P\-E, size\-\_\-t, emstream $\ast$)
 \item 
 void \hyperlink{classtask__source_a927a4597966476a7616d4d4120b9c43d}{run} (void)
 \item 
-void \hyperlink{classtask__source_aa44d5bc1d49ea4532b57afbc9d53ad25}{print\+\_\+status} (emstream \&)
+void \hyperlink{classtask__source_aa44d5bc1d49ea4532b57afbc9d53ad25}{print\-\_\-status} (emstream \&)
 \end{DoxyCompactItemize}
-\subsection*{Protected Attributes}
+\subsection*{\-Protected \-Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classtask__source_adb2e2007c9dc498470637c4fc5444340}{uint32\+\_\+t \hyperlink{classtask__source_adb2e2007c9dc498470637c4fc5444340}{runs}}\label{classtask__source_adb2e2007c9dc498470637c4fc5444340}
+\hypertarget{classtask__source_adb2e2007c9dc498470637c4fc5444340}{uint32\-\_\-t \hyperlink{classtask__source_adb2e2007c9dc498470637c4fc5444340}{runs}}\label{classtask__source_adb2e2007c9dc498470637c4fc5444340}
 
-\begin{DoxyCompactList}\small\item\em The number of runs through the loop. \end{DoxyCompactList}\end{DoxyCompactItemize}
-
-
-\subsection{Detailed Description}
-This task class creates some data to send to a sink task. We will check if the data got there safely, having made it through the dangerous waters of R\+T\+O\+S context switches and interrupts and sharks with lasers. 
-
-Definition at line 71 of file task\+\_\+source.\+h.
+\begin{DoxyCompactList}\small\item\em \-The number of runs through the loop. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
+\subsection{\-Detailed \-Description}
+\-This task class creates some data to send to a sink task. \-We will check if the data got there safely, having made it through the dangerous waters of \-R\-T\-O\-S context switches and interrupts and sharks with lasers. 
 
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{classtask__source_aae32ac2cf2c64de37e329b660be59c34}{\index{task\+\_\+source@{task\+\_\+source}!task\+\_\+source@{task\+\_\+source}}
-\index{task\+\_\+source@{task\+\_\+source}!task\+\_\+source@{task\+\_\+source}}
-\subsubsection[{task\+\_\+source}]{\setlength{\rightskip}{0pt plus 5cm}task\+\_\+source\+::task\+\_\+source (
+\-Definition at line 71 of file task\-\_\-source.\-h.
+
+
+
+\subsection{\-Constructor \& \-Destructor \-Documentation}
+\hypertarget{classtask__source_aae32ac2cf2c64de37e329b660be59c34}{\index{task\-\_\-source@{task\-\_\-source}!task\-\_\-source@{task\-\_\-source}}
+\index{task\-\_\-source@{task\-\_\-source}!task_source@{task\-\_\-source}}
+\subsubsection[{task\-\_\-source}]{\setlength{\rightskip}{0pt plus 5cm}{\bf task\-\_\-source\-::task\-\_\-source} (
 \begin{DoxyParamCaption}
-\item[{const char $\ast$}]{a\+\_\+name, }
-\item[{unsigned port\+B\+A\+S\+E\+\_\+\+T\+Y\+P\+E}]{a\+\_\+priority, }
-\item[{size\+\_\+t}]{a\+\_\+stack\+\_\+size, }
-\item[{emstream $\ast$}]{p\+\_\+ser\+\_\+dev}
+\item[{const char $\ast$}]{a\-\_\-name, }
+\item[{unsigned port\-B\-A\-S\-E\-\_\-\-T\-Y\-P\-E}]{a\-\_\-priority, }
+\item[{size\-\_\-t}]{a\-\_\-stack\-\_\-size, }
+\item[{emstream $\ast$}]{p\-\_\-ser\-\_\-dev}
 \end{DoxyParamCaption}
 )}}\label{classtask__source_aae32ac2cf2c64de37e329b660be59c34}
-This constructor creates a new data source task. Its main job is to call the parent class's constructor which does most of the work. 
-\begin{DoxyParams}{Parameters}
-{\em a\+\_\+name} & A character string which will be the name of this task \\
+\-This constructor creates a new data source task. \-Its main job is to call the parent class's constructor which does most of the work. 
+\begin{DoxyParams}{\-Parameters}
+{\em a\-\_\-name} & \-A character string which will be the name of this task \\
 \hline
-{\em a\+\_\+priority} & The priority at which this task will initially run (default\+: 0) \\
+{\em a\-\_\-priority} & \-The priority at which this task will initially run (default\-: 0) \\
 \hline
-{\em a\+\_\+stack\+\_\+size} & The size of this task's stack in bytes (default\+: config\+M\+I\+N\+I\+M\+A\+L\+\_\+\+S\+T\+A\+C\+K\+\_\+\+S\+I\+Z\+E) \\
+{\em a\-\_\-stack\-\_\-size} & \-The size of this task's stack in bytes (default\-: config\-M\-I\-N\-I\-M\-A\-L\-\_\-\-S\-T\-A\-C\-K\-\_\-\-S\-I\-Z\-E) \\
 \hline
-{\em p\+\_\+ser\+\_\+dev} & Pointer to a serial device (port, radio, S\+D card, etc.) which can be used by this task to communicate (default\+: N\+U\+L\+L) \\
+{\em p\-\_\-ser\-\_\-dev} & \-Pointer to a serial device (port, radio, \-S\-D card, etc.) which can be used by this task to communicate (default\-: \-N\-U\-L\-L) \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 45 of file task\+\_\+source.\+cpp.
+\-Definition at line 45 of file task\-\_\-source.\-cpp.
 
 
 
-References runs.
+\-References runs.
 
 
 
-\subsection{Member Function Documentation}
-\hypertarget{classtask__source_aa44d5bc1d49ea4532b57afbc9d53ad25}{\index{task\+\_\+source@{task\+\_\+source}!print\+\_\+status@{print\+\_\+status}}
-\index{print\+\_\+status@{print\+\_\+status}!task\+\_\+source@{task\+\_\+source}}
-\subsubsection[{print\+\_\+status}]{\setlength{\rightskip}{0pt plus 5cm}void task\+\_\+source\+::print\+\_\+status (
+\subsection{\-Member \-Function \-Documentation}
+\hypertarget{classtask__source_aa44d5bc1d49ea4532b57afbc9d53ad25}{\index{task\-\_\-source@{task\-\_\-source}!print\-\_\-status@{print\-\_\-status}}
+\index{print\-\_\-status@{print\-\_\-status}!task_source@{task\-\_\-source}}
+\subsubsection[{print\-\_\-status}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf task\-\_\-source\-::print\-\_\-status} (
 \begin{DoxyParamCaption}
-\item[{emstream \&}]{ser\+\_\+thing}
+\item[{emstream \&}]{ser\-\_\-thing}
 \end{DoxyParamCaption}
 )}}\label{classtask__source_aa44d5bc1d49ea4532b57afbc9d53ad25}
-This method prints information about the status of this task. It is called by the overloaded \char`\"{}$<$$<$\char`\"{} operator so that when the task prints itself to a serial device, whatever this method wants printed gets printed. 
-\begin{DoxyParams}{Parameters}
-{\em ser\+\_\+thing} & The serial device to which information will be printed \\
+\-This method prints information about the status of this task. \-It is called by the overloaded \char`\"{}$<$$<$\char`\"{} operator so that when the task prints itself to a serial device, whatever this method wants printed gets printed. 
+\begin{DoxyParams}{\-Parameters}
+{\em ser\-\_\-thing} & \-The serial device to which information will be printed \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 107 of file task\+\_\+source.\+cpp.
+\-Definition at line 107 of file task\-\_\-source.\-cpp.
 
 
 
-References runs.
+\-References runs.
 
-\hypertarget{classtask__source_a927a4597966476a7616d4d4120b9c43d}{\index{task\+\_\+source@{task\+\_\+source}!run@{run}}
-\index{run@{run}!task\+\_\+source@{task\+\_\+source}}
-\subsubsection[{run}]{\setlength{\rightskip}{0pt plus 5cm}void task\+\_\+source\+::run (
+\hypertarget{classtask__source_a927a4597966476a7616d4d4120b9c43d}{\index{task\-\_\-source@{task\-\_\-source}!run@{run}}
+\index{run@{run}!task_source@{task\-\_\-source}}
+\subsubsection[{run}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf task\-\_\-source\-::run} (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
 )}}\label{classtask__source_a927a4597966476a7616d4d4120b9c43d}
-This run method is called by the R\+T\+O\+S and contains a loop in which the data acquisition takes place.
+\-This run method is called by the \-R\-T\-O\-S and contains a loop in which the data acquisition takes place.
 
-This task function takes data at regular intervals, then puts the data into a queue to be received by another task. 
+\-This task function takes data at regular intervals, then puts the data into a queue to be received by another task. 
 
-Definition at line 62 of file task\+\_\+source.\+cpp.
-
-
-
-References p\+\_\+glob\+\_\+of\+\_\+probs, p\+\_\+queue\+\_\+1, p\+\_\+share\+\_\+1, and runs.
+\-Definition at line 62 of file task\-\_\-source.\-cpp.
 
 
 
-The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\-References p\-\_\-glob\-\_\-of\-\_\-probs, p\-\_\-queue\-\_\-1, p\-\_\-share\-\_\-1, and runs.
+
+
+
+\-The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
 \item 
-\hyperlink{task__source_8h}{task\+\_\+source.\+h}\item 
-\hyperlink{task__source_8cpp}{task\+\_\+source.\+cpp}\end{DoxyCompactItemize}
+\hyperlink{task__source_8h}{task\-\_\-source.\-h}\item 
+\hyperlink{task__source_8cpp}{task\-\_\-source.\-cpp}\end{DoxyCompactItemize}
