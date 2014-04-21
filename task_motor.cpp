@@ -79,6 +79,11 @@ void task_motor::run (void) {
    delay (100);
 }
 
+/**
+ * Self explanitory. This function takes in a serial port in the form of an
+ * address and passes it straight to the parent constructor so it can print
+ * out the status. Also prints out the number of runs
+ */
 
 void task_motor::print_status (emstream& ser_thing) {
    // Call the parent task's printing function first
