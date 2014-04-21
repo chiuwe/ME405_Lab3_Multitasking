@@ -261,6 +261,7 @@ void task_user::motor_settings (void)
 	char char_in;
 	char buf[4];
 	int i = 0;
+	int num;
 	bool exit = false;
 	bool pot_state;
 
@@ -281,6 +282,7 @@ void task_user::motor_settings (void)
 					break;
 				case 'p':
 				   *p_serial << PMS ("Enter power value [-255, 255]: ");
+				   i = 0;
 				   while (!p_serial->check_for_char());
 				   while ((char_in = p_serial->getchar()) != '\r')
 				   {
@@ -291,7 +293,8 @@ void task_user::motor_settings (void)
 				   }
 				   *p_serial << endl;
 				   // TODO: no error checking yet...
-				   motor_select ? power_2->put(atoi(buf)) : power_1->put(atoi(buf));
+				   num = strtol(buf, NULL, 10);
+				   motor_select ? power_2->put(num) : power_1->put(num);
 					break;
 				case 'r':
 				    motor_select ? brake_2->put(false) : brake_1->put(false);
