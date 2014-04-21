@@ -250,44 +250,58 @@ void task_user::motor_menu (void)
 void task_user::motor_settings (void)
 {
 	char char_in;
-	char buf[10];
+	char buf[4];
 	int i = 0;
+	bool exit = false;
+	bool pot_state;
 
-	while (!p_serial->check_for_char());
+   while (!exit) {
+   	if (p_serial->check_for_char()) {
+			char_in = p_serial->getchar();
 
-	char_in = p_serial->getchar();
-
-   switch (char_in)
-   {
-   	case 's':
-   		motor_select = !motor_select;
-   	   break;
-   	case 'w':
-   		motor_select ? pot_2->put(!pot_2) : pot_1->put(!pot_1);
-   	case 'p':
-   	   *p_serial << PMS ("Enter power value [-255, 255]: ");
-   	   // TODO: add pot reading from somwhere.
-   	   while (!p_serial->check_for_char());
-   	   while ((char_in = p_serial->getchar()))
-   	   {
-   	   	buf[i] = char_in;
-   	   	i++;
-   	   }
-   	   motor_select ? power_2->put(atoi(buf)) : power_1->put(atoi(buf));
-   		break;
-   	case 'r':
-   	    motor_select ? brake_2->put(false) : brake_1->put(false);
-   	   break;
-   	case 'b':
-   	   motor_select ? brake_2->put(true) : brake_1->put(true);
-   		break;
-   	case 'x':
-   		print_help_message();
-   	   break;
-   	default:
-   		p_serial->putchar (char_in);
-			*p_serial << PMS (":WTF?") << endl;
-   	   break;
+			switch (char_in)
+			{
+				case 's':
+					motor_select = !motor_select;
+					*p_serial << PMS ("Motor ") << motor_select + 1 << PMS (" now selected.") << endl;
+				   break;
+				case 'w':
+					motor_select ? pot_2->put(!pot_2->get()) : pot_1->put(!pot_1->get());
+					pot_state  = motor_select ? pot_2->get() : pot_1->get();
+					*p_serial << PMS("Potentiometer state: ") << (pot_state ? "on" : "off") << endl;
+					break;
+				case 'p':
+				   *p_serial << PMS ("Enter power value [-255, 255]: ");
+				   while (!p_serial->check_for_char());
+				   while ((char_in = p_serial->getchar()) != '\r')
+				   {
+				   	buf[i] = char_in;
+				   	i++;
+				   	*p_serial << char_in;
+				   	while (!p_serial->check_for_char());
+				   }
+				   *p_serial << endl;
+				   // TODO: no error checking yet...
+				   motor_select ? power_2->put(atoi(buf)) : power_1->put(atoi(buf));
+					break;
+				case 'r':
+				    motor_select ? brake_2->put(false) : brake_1->put(false);
+				    *p_serial << PMS ("Motor is now running.") << endl;
+				   break;
+				case 'b':
+				   motor_select ? brake_2->put(true) : brake_1->put(true);
+				   *p_serial << PMS ("Motor is now braking.") << endl;
+					break;
+				case 'x':
+					*p_serial << PMS ("Returning to main...") << endl;
+					exit = true;
+				   break;
+				default:
+					p_serial->putchar (char_in);
+					*p_serial << PMS (":WTF?") << endl;
+				   break;
+			}
+		}
    }
 }
 

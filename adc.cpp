@@ -50,7 +50,7 @@ adc::adc (emstream* p_serial_port) {
 	ADCSRA = (1 << ADEN) | (1 << ADPS2) | (1 << ADPS0);
 
 	// Print a handy debugging message
-  	DBG (ptr_to_serial, "A/D constructor OK" << endl);
+  	// DBG (ptr_to_serial, "A/D constructor OK" << endl);
 }
 
 

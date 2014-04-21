@@ -144,8 +144,8 @@ int main (void)
    motor_driver *p_my_motor_driver1 = new motor_driver(&ser_port, &DDRC, 0x07, &DDRB, 0x40, &PORTC, 0x04, &TCCR1A, 0xA9, &TCCR1B, 0x0B, &OCR1B);
    motor_driver *p_my_motor_driver2 = new motor_driver(&ser_port, &DDRD, 0xE0, &DDRB, 0x20, &PORTD, 0x80, &TCCR1A, 0xA9, &TCCR1B, 0x0B, &OCR1A);
 
-   new task_motor ("Motor1", tskIDLE_PRIORITY + 2, 240, 3, p_my_motor_driver1, brake_1, power_1, pot_1, &ser_port);
-   new task_motor ("Motor2", tskIDLE_PRIORITY + 2, 240, 4, p_my_motor_driver2, brake_2, power_2, pot_2, &ser_port);
+   new task_motor ("Motor1", tskIDLE_PRIORITY + 1, 240, 3, p_my_motor_driver1, brake_1, power_1, pot_1, &ser_port);
+   new task_motor ("Motor2", tskIDLE_PRIORITY + 1, 240, 4, p_my_motor_driver2, brake_2, power_2, pot_2, &ser_port);
 	// Create the data source and sink tasks
 	// new task_source ("Source", tskIDLE_PRIORITY + 2, 220, &ser_port);
 	// new task_sink ("Sink", tskIDLE_PRIORITY + 2, 160, &ser_port);
