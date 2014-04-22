@@ -76,6 +76,7 @@ void task_motor::run (void) {
          }
       }
    }
+   // TODO: delay might need to be longer. task priority not working if different.
    delay (100);
 }
 
