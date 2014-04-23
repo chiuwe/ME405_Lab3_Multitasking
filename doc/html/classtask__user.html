@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>Lab 3 Motor Task: task_user Class Reference</title>
+<title>Lab 3 Multitasking: task_user Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Lab 3 Motor Task
+   <div id="projectname">Lab 3 Multitasking
    &#160;<span id="projectnumber">1.0</span>
    </div>
   </td>
@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -181,7 +181,7 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="task__user_8cpp_source.html#l00054">54</a> of file <a class="el" href="task__user_8cpp_source.html">task_user.cpp</a>.</p>
+<p>Definition at line <a class="el" href="task__user_8cpp_source.html#l00055">55</a> of file <a class="el" href="task__user_8cpp_source.html">task_user.cpp</a>.</p>
 
 <p>References <a class="el" href="task__user_8h_source.html#l00065">p_serial</a>, and <a class="el" href="task__user_8h_source.html#l00076">runs</a>.</p>
 
@@ -211,11 +211,11 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 </div><div class="memdoc">
 <p>This method prints out the diferent options for the motor menu imlpmented in <a class="el" href="classtask__user.html#adca6429d57be25e8d411414fc8ad75af">run()</a>. It shows the possible inputs it accepts as well as what they do. </p>
 
-<p>Definition at line <a class="el" href="task__user_8cpp_source.html#l00240">240</a> of file <a class="el" href="task__user_8cpp_source.html">task_user.cpp</a>.</p>
+<p>Definition at line <a class="el" href="task__user_8cpp_source.html#l00241">241</a> of file <a class="el" href="task__user_8cpp_source.html">task_user.cpp</a>.</p>
 
-<p>References <a class="el" href="task__user_8h_source.html#l00065">p_serial</a>.</p>
+<p>References <a class="el" href="task__user_8cpp_source.html#l00041">motor_select</a>, <a class="el" href="task__user_8h_source.html#l00065">p_serial</a>, <a class="el" href="test__main_8cpp_source.html#l00107">pot_1</a>, and <a class="el" href="test__main_8cpp_source.html#l00112">pot_2</a>.</p>
 
-<p>Referenced by <a class="el" href="task__user_8cpp_source.html#l00075">run()</a>.</p>
+<p>Referenced by <a class="el" href="task__user_8cpp_source.html#l00261">motor_settings()</a>, and <a class="el" href="task__user_8cpp_source.html#l00076">run()</a>.</p>
 
 </div>
 </div>
@@ -242,11 +242,11 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 </div><div class="memdoc">
 <p>This function is the implementation of the motor menu. Given correct inputs it will let you change motor, change pot state, change power settings, run the brakes, and switch back to the main menu. Incorrect input are more or less ignored </p>
 
-<p>Definition at line <a class="el" href="task__user_8cpp_source.html#l00259">259</a> of file <a class="el" href="task__user_8cpp_source.html">task_user.cpp</a>.</p>
+<p>Definition at line <a class="el" href="task__user_8cpp_source.html#l00261">261</a> of file <a class="el" href="task__user_8cpp_source.html">task_user.cpp</a>.</p>
 
-<p>References <a class="el" href="task__user_8h_source.html#l00065">p_serial</a>.</p>
+<p>References <a class="el" href="test__main_8cpp_source.html#l00097">brake_1</a>, <a class="el" href="test__main_8cpp_source.html#l00102">brake_2</a>, <a class="el" href="task__user_8cpp_source.html#l00241">motor_menu()</a>, <a class="el" href="task__user_8cpp_source.html#l00041">motor_select</a>, <a class="el" href="task__user_8h_source.html#l00065">p_serial</a>, <a class="el" href="test__main_8cpp_source.html#l00107">pot_1</a>, <a class="el" href="test__main_8cpp_source.html#l00112">pot_2</a>, <a class="el" href="test__main_8cpp_source.html#l00087">power_1</a>, and <a class="el" href="test__main_8cpp_source.html#l00092">power_2</a>.</p>
 
-<p>Referenced by <a class="el" href="task__user_8cpp_source.html#l00075">run()</a>.</p>
+<p>Referenced by <a class="el" href="task__user_8cpp_source.html#l00076">run()</a>.</p>
 
 </div>
 </div>
@@ -273,11 +273,11 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 </div><div class="memdoc">
 <p>This method prints out the diferent options for the main menu imlpmented in <a class="el" href="classtask__user.html#adca6429d57be25e8d411414fc8ad75af">run()</a>. It shows the possible inputs it accepts as well as what they do. </p>
 
-<p>Definition at line <a class="el" href="task__user_8cpp_source.html#l00164">164</a> of file <a class="el" href="task__user_8cpp_source.html">task_user.cpp</a>.</p>
+<p>Definition at line <a class="el" href="task__user_8cpp_source.html#l00165">165</a> of file <a class="el" href="task__user_8cpp_source.html">task_user.cpp</a>.</p>
 
 <p>References <a class="el" href="task__user_8h_source.html#l00065">p_serial</a>.</p>
 
-<p>Referenced by <a class="el" href="task__user_8cpp_source.html#l00075">run()</a>.</p>
+<p>Referenced by <a class="el" href="task__user_8cpp_source.html#l00076">run()</a>.</p>
 
 </div>
 </div>
@@ -302,7 +302,7 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="task__user_8cpp_source.html#l00227">227</a> of file <a class="el" href="task__user_8cpp_source.html">task_user.cpp</a>.</p>
+<p>Definition at line <a class="el" href="task__user_8cpp_source.html#l00228">228</a> of file <a class="el" href="task__user_8cpp_source.html">task_user.cpp</a>.</p>
 
 <p>References <a class="el" href="task__user_8h_source.html#l00076">runs</a>.</p>
 
@@ -324,9 +324,9 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 <p>This run method is called by the RTOS and contains a loop in which the task checks for user input and characters in the print queue, dealing with each in the appropriate manner.</p>
 <p>This task is the main loop that runs the menu. You can chose options from the main menu, including printing the time, version, and stack, or you can go to the motor menu implemented in <a class="el" href="classtask__user.html#a62e9a23d2a052ef1c34ef4c6f1152032">motor_menu()</a> </p>
 
-<p>Definition at line <a class="el" href="task__user_8cpp_source.html#l00075">75</a> of file <a class="el" href="task__user_8cpp_source.html">task_user.cpp</a>.</p>
+<p>Definition at line <a class="el" href="task__user_8cpp_source.html#l00076">76</a> of file <a class="el" href="task__user_8cpp_source.html">task_user.cpp</a>.</p>
 
-<p>References <a class="el" href="task__user_8cpp_source.html#l00240">motor_menu()</a>, <a class="el" href="task__user_8cpp_source.html#l00259">motor_settings()</a>, <a class="el" href="task__user_8h_source.html#l00065">p_serial</a>, <a class="el" href="task__user_8cpp_source.html#l00164">print_help_message()</a>, <a class="el" href="test__main_8cpp_source.html#l00076">print_ser_queue</a>, <a class="el" href="task__user_8h_source.html#l00076">runs</a>, and <a class="el" href="task__user_8cpp_source.html#l00184">show_status()</a>.</p>
+<p>References <a class="el" href="task__user_8cpp_source.html#l00241">motor_menu()</a>, <a class="el" href="task__user_8cpp_source.html#l00261">motor_settings()</a>, <a class="el" href="task__user_8h_source.html#l00065">p_serial</a>, <a class="el" href="task__user_8cpp_source.html#l00165">print_help_message()</a>, <a class="el" href="test__main_8cpp_source.html#l00073">print_ser_queue</a>, <a class="el" href="task__user_8h_source.html#l00076">runs</a>, and <a class="el" href="task__user_8cpp_source.html#l00185">show_status()</a>.</p>
 
 </div>
 </div>
@@ -359,11 +359,11 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 <li>Amount of heap space free and setting of RTOS tick timer </li>
 </ul>
 
-<p>Definition at line <a class="el" href="task__user_8cpp_source.html#l00184">184</a> of file <a class="el" href="task__user_8cpp_source.html">task_user.cpp</a>.</p>
+<p>Definition at line <a class="el" href="task__user_8cpp_source.html#l00185">185</a> of file <a class="el" href="task__user_8cpp_source.html">task_user.cpp</a>.</p>
 
 <p>References <a class="el" href="task__user_8h_source.html#l00065">p_serial</a>, and <a class="el" href="task__user_8h_source.html#l00049">PROGRAM_VERSION</a>.</p>
 
-<p>Referenced by <a class="el" href="task__user_8cpp_source.html#l00075">run()</a>.</p>
+<p>Referenced by <a class="el" href="task__user_8cpp_source.html#l00076">run()</a>.</p>
 
 </div>
 </div>
@@ -389,7 +389,7 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 
 <p>Definition at line <a class="el" href="task__user_8h_source.html#l00065">65</a> of file <a class="el" href="task__user_8h_source.html">task_user.h</a>.</p>
 
-<p>Referenced by <a class="el" href="task__user_8cpp_source.html#l00240">motor_menu()</a>, <a class="el" href="task__user_8cpp_source.html#l00259">motor_settings()</a>, <a class="el" href="task__user_8cpp_source.html#l00164">print_help_message()</a>, <a class="el" href="task__user_8cpp_source.html#l00075">run()</a>, <a class="el" href="task__user_8cpp_source.html#l00184">show_status()</a>, and <a class="el" href="task__user_8cpp_source.html#l00054">task_user()</a>.</p>
+<p>Referenced by <a class="el" href="task__user_8cpp_source.html#l00241">motor_menu()</a>, <a class="el" href="task__user_8cpp_source.html#l00261">motor_settings()</a>, <a class="el" href="task__user_8cpp_source.html#l00165">print_help_message()</a>, <a class="el" href="task__user_8cpp_source.html#l00076">run()</a>, <a class="el" href="task__user_8cpp_source.html#l00185">show_status()</a>, and <a class="el" href="task__user_8cpp_source.html#l00055">task_user()</a>.</p>
 
 </div>
 </div>
@@ -400,7 +400,7 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Apr 23 2014 15:38:32 for Lab 3 Motor Task by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Apr 23 2014 16:29:23 for Lab 3 Multitasking by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

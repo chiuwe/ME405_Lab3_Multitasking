@@ -1,30 +1,9 @@
 //**************************************************************************************
-/** \file task_multi.h
- *    This file contains the header for a task class which is will be instantiated many
- *    times to test how many tasks can be safely run on various AVR processors using
- *    the ME507/FreeRTOS software. 
- *
- *  Revisions:
- *    \li 09-30-2012 JRR Original file was a one-file demonstration with two tasks
- *    \li 10-05-2012 JRR Split into multiple files, one for each task
- *    \li 10-25-2012 JRR Changed to a more fully C++ version with class task_sender
- *    \li 10-27-2012 JRR Altered from data sending task into LED blinking class
- *    \li 11-04-2012 JRR Altered again into the multi-task monstrosity
- *
- *  License:
- *    This file is copyright 2012 by JR Ridgely and released under the Lesser GNU 
- *    Public License, version 2. It intended for educational use only, but its use
- *    is not limited thereto. */
-/*    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
- *    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
- *    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
- *    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
- *    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUEN-
- *    TIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS 
- *    OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
- *    CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, 
- *    OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
- *    OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
+/** \file task_motor.h
+ *    This file contains the header for motor controller class which controls speed and
+ *    direction of a motor using a voltage measured from the A/D as input. One button
+ *    will trigger stop and go. A second button will determine which motor is being
+ *    controlled.*/
 //**************************************************************************************
 
 // This define prevents this .h file from being included multiple times in a .cpp file
@@ -34,7 +13,7 @@
 #include <stdlib.h>                    // Prototype declarations for I/O functions
 
 #include "FreeRTOS.h"                  // Primary header for FreeRTOS
-#include "task.h"                   // Header for FreeRTOS task functions
+#include "task.h"                      // Header for FreeRTOS task functions
 #include "queue.h"                     // FreeRTOS inter-task communication queues
 
 #include "frt_task.h"                  // ME405/507 base task class
@@ -60,10 +39,22 @@ class task_motor : public frt_task
 private:
 
 protected:
+   /// Brake pin mask.
    uint8_t brake_pin;
+
+   /// Value for which adc should read from.
+   uint8_t adc_select;
+
+   /// A pointer to motor_driver.
    motor_driver* driver;
+
+   /// A pointer to the brake shared data.
    shared_data<bool>* brake;
+
+   /// A pointer to the power shared data.
    shared_data<int16_t>* power;
+
+   /// A pointer to the potentiometer shared data.
    shared_data<bool>* pot;
 
 
@@ -71,7 +62,7 @@ public:
    uint32_t runs;                   ///< How many times through the task loop
 
    // This constructor creates a generic task of which many copies can be made
-   task_motor (const char*, unsigned portBASE_TYPE, size_t, uint8_t, motor_driver*, shared_data<bool>*, shared_data<int16_t>*, shared_data<bool>*, emstream*);
+   task_motor (const char*, unsigned portBASE_TYPE, size_t, uint8_t, motor_driver*, shared_data<bool>*, shared_data<int16_t>*, shared_data<bool>*, uint8_t, emstream*);
 
    /** This run method is called by the RTOS and contains a loop in which the task
     *  checks for data and sends it if appropriate.

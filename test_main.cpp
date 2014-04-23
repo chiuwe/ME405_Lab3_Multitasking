@@ -47,9 +47,6 @@
 #include "frt_queue.h"                      // Header of wrapper for FreeRTOS queues
 #include "frt_shared_data.h"                // Header for thread-safe shared data
 #include "shares.h"                         // Global ('extern') queue declarations
-#include "task_multi.h"                     // Header for the data acquisition task
-#include "task_source.h"                    // Header for data sending task
-#include "task_sink.h"                      // Header for data receiving task
 #include "task_user.h"                      // Header for user interface task
 #include "task_motor.h"
 
@@ -83,11 +80,35 @@ frt_queue<uint32_t>* p_queue_1;
  *  the sink task.
  */
 shared_data<uint32_t>* p_share_1;
+
+/** This shared data item allows a power value to be posted by user task and read by the 
+ *  motor task.
+ */
 shared_data<int16_t>* power_1;
+
+/** This shared data item allows a power value to be posted by user task and read by the 
+ *  motor task.
+ */
 shared_data<int16_t>* power_2;
+
+/** This shared data item allows a brake bool to be posted by user task and read by the 
+ *  motor task.
+ */
 shared_data<bool>* brake_1;
+
+/** This shared data item allows a break bool to be posted by user task and read by the 
+ *  motor task.
+ */
 shared_data<bool>* brake_2;
+
+/** This shared data item determines if motor task reads from the potentiometer. 
+ *  Set by user task and read by the motor task.
+ */
 shared_data<bool>* pot_1;
+
+/** This shared data item determines if motor task reads from the potentiometer. 
+ *  Set by user task and read by the motor task.
+ */
 shared_data<bool>* pot_2;
 
 /** This global variable will be written by the source task and read by the sink task.
@@ -144,8 +165,8 @@ int main (void)
    motor_driver *p_my_motor_driver1 = new motor_driver(&ser_port, &DDRC, 0x07, &DDRB, 0x40, &PORTC, 0x04, &TCCR1A, 0xA9, &TCCR1B, 0x0B, &OCR1B);
    motor_driver *p_my_motor_driver2 = new motor_driver(&ser_port, &DDRD, 0xE0, &DDRB, 0x20, &PORTD, 0x80, &TCCR1A, 0xA9, &TCCR1B, 0x0B, &OCR1A);
 
-   new task_motor ("Motor1", tskIDLE_PRIORITY + 1, 240, 3, p_my_motor_driver1, brake_1, power_1, pot_1, &ser_port);
-   new task_motor ("Motor2", tskIDLE_PRIORITY + 1, 240, 4, p_my_motor_driver2, brake_2, power_2, pot_2, &ser_port);
+   new task_motor ("Motor1", tskIDLE_PRIORITY + 1, 240, 3, p_my_motor_driver1, brake_1, power_1, pot_1, 1, &ser_port);
+   new task_motor ("Motor2", tskIDLE_PRIORITY + 1, 240, 4, p_my_motor_driver2, brake_2, power_2, pot_2, 0, &ser_port);
 	// Create the data source and sink tasks
 	// new task_source ("Source", tskIDLE_PRIORITY + 2, 220, &ser_port);
 	// new task_sink ("Sink", tskIDLE_PRIORITY + 2, 160, &ser_port);

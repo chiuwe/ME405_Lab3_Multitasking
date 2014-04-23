@@ -1,5 +1,5 @@
 //**************************************************************************************
-/** \file motor_controller.cpp
+/** \file task_motor.cpp
  *    This file contains the code for a motor controller class which controls speed and
  *    direction of a motor using a voltage measured from the A/D as input. One button
  *    will trigger stop and go. A second button will determine which motor is being
@@ -38,6 +38,7 @@ task_motor::task_motor (const char* a_name,
                          shared_data<bool>* p_brake,
                          shared_data<int16_t>* p_power,
                          shared_data<bool>* p_pot,
+                         uint8_t adc_mask,
                          emstream* p_ser_dev
                         )
    : frt_task (a_name, a_priority, a_stack_size, p_ser_dev) {
@@ -46,6 +47,7 @@ task_motor::task_motor (const char* a_name,
    brake = p_brake;
    power = p_power;
    pot = p_pot;
+   adc_select = adc_mask;
 }
 
 
@@ -69,14 +71,14 @@ void task_motor::run (void) {
          driver->brake();
       } else {
          if (pot->get()) {
-            a2d_reading = p_my_adc->read_once(0);
+            a2d_reading = p_my_adc->read_once(adc_select);
             driver->set_power((a2d_reading / 2) - 255);
          } else {
             driver->set_power(power->get());
          }
       }
    }
-   run++;
+   runs++;
    // TODO: delay might need to be longer. task priority not working if different.
    delay (100);
 }

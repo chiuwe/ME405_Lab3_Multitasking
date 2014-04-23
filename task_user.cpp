@@ -37,6 +37,7 @@
  *  The duration is calculated to be about 5 ms.
  */
 const portTickType ticks_to_delay = ((configTICK_RATE_HZ / 1000) * 5);
+/// Determines which motor is being selected in the user interface.
 bool motor_select;
 
 
@@ -248,6 +249,7 @@ void task_user::motor_menu (void)
 	*p_serial << PMS (" p:  Change power setting") << endl;
 	*p_serial << PMS (" r:  Run selected motor") << endl;
 	*p_serial << PMS (" b:  Brake selected motor") << endl;
+	*p_serial << PMS (" h:  print this help message") << endl;
 	*p_serial << PMS (" x:  Exit motor setting menu") << endl;
 }
 
@@ -308,6 +310,9 @@ void task_user::motor_settings (void)
 					*p_serial << PMS ("Returning to main...") << endl;
 					exit = true;
 				   break;
+				case 'h':
+					motor_menu();
+					break;
 				default:
 					p_serial->putchar (char_in);
 					*p_serial << PMS (":WTF?") << endl;
