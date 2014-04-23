@@ -131,8 +131,6 @@ shared_data<float>* p_rate_1;
 
 int main (void)
 {
-	// char multi_task_name[12];				// Stores name for multiple tasks
-
 	// Disable the watchdog timer unless it's needed later. This is important because
 	// sometimes the watchdog timer may have been left on...and it tends to stay on
 	MCUSR = 0;
@@ -165,28 +163,14 @@ int main (void)
    motor_driver *p_my_motor_driver1 = new motor_driver(&ser_port, &DDRC, 0x07, &DDRB, 0x40, &PORTC, 0x04, &TCCR1A, 0xA9, &TCCR1B, 0x0B, &OCR1B);
    motor_driver *p_my_motor_driver2 = new motor_driver(&ser_port, &DDRD, 0xE0, &DDRB, 0x20, &PORTD, 0x80, &TCCR1A, 0xA9, &TCCR1B, 0x0B, &OCR1A);
 
+   // creates two motor tasks.
    new task_motor ("Motor1", tskIDLE_PRIORITY + 1, 240, 3, p_my_motor_driver1, brake_1, power_1, pot_1, 1, &ser_port);
    new task_motor ("Motor2", tskIDLE_PRIORITY + 1, 240, 4, p_my_motor_driver2, brake_2, power_2, pot_2, 0, &ser_port);
-	// Create the data source and sink tasks
-	// new task_source ("Source", tskIDLE_PRIORITY + 2, 220, &ser_port);
-	// new task_sink ("Sink", tskIDLE_PRIORITY + 2, 160, &ser_port);
 
 	// The user interface is at low priority; it could have been run in the idle task
 	// but it is desired to exercise the RTOS more thoroughly in this test program.
 	new task_user ("UserInt", tskIDLE_PRIORITY + 1, 240, &ser_port);
 
-	// Create a set of tasks from the task_multi class. This is to test how things work
-	// when there are a whole bunch of tasks operating
-	// for (uint8_t index = 0; index < N_MULTI_TASKS; index++)
-	// {
-	// 	strcpy (multi_task_name, "Multi");
-	// 	itoa (index, (multi_task_name + 5), 10);
-
-	// 	new task_multi (multi_task_name, tskIDLE_PRIORITY + 1, 120, &ser_port);
-	// }
-
-	// Print a list of tasks along with status information
-   // print_task_list (&ser_port);
 
 	// Print an empty line so that there's space between task hellos and help message
 	ser_port << endl;
