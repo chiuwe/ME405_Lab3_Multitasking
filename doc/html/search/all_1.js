@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['global_5ferrors',['global_errors',['../classtask__sink.html#a7f9226aad37d173f2a4a8984dd75a2ff',1,'task_sink']]]
+  ['brake',['brake',['../classmotor__driver.html#aa21e7894053cd83968d9e6b2958c9aec',1,'motor_driver']]]
 ];

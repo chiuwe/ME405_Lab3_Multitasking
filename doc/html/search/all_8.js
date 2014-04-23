@@ -1,7 +1,4 @@
 var searchData=
 [
-  ['share_5ferrors',['share_errors',['../classtask__sink.html#ab6a9c33c4bd8f29f132aa48d401006c1',1,'task_sink']]],
-  ['shares_2eh',['shares.h',['../shares_8h.html',1,'']]],
-  ['show_5ferrors',['show_errors',['../classtask__sink.html#a13ab68837b0138fb6dbd488dff4e6175',1,'task_sink']]],
-  ['show_5fstatus',['show_status',['../classtask__user.html#a105bebbd9cb1031154c3dfc3662db4a0',1,'task_user']]]
+  ['operator_3c_3c',['operator&lt;&lt;',['../adc_8cpp.html#afb33ca9fe94765ee57079e7feb03f975',1,'operator&lt;&lt;(emstream &amp;serpt, adc &amp;a2d):&#160;adc.cpp'],['../adc_8h.html#a6e6d1e227b216fe2a1fee9b0ea52180d',1,'operator&lt;&lt;(emstream &amp;, adc &amp;):&#160;adc.cpp']]]
 ];

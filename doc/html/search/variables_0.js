@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['def_5fticks_5fper_5frun',['DEF_TICKS_PER_RUN',['../task__source_8h.html#ab24af5f6e613475c5532218fe73d0cde',1,'task_source.h']]]
+  ['admux_5finit',['ADMUX_init',['../classadc.html#a6df75e4965d01b573c088c052e9c80c6',1,'adc']]]
 ];
