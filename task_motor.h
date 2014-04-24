@@ -26,12 +26,7 @@
 
 
 //-------------------------------------------------------------------------------------
-/** This task doesn't do much except take up space and processor time to test the
- *  ME507/FreeRTOS software. The idea is to instantiate a whole bunch of these tasks
- *  (it has been tested with over 50 of them on an ATmega1284p) and run them all to 
- *  make sure the processor can handle allocating memory for and running so many
- *  tasks. Each task object will run for a very brief time, then call its delay()
- *  method for a semi-pseudo-random period of time. 
+/** This task determines what commands to send to the motor driver.
  */
 
 class task_motor : public frt_task
