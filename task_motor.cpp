@@ -78,10 +78,9 @@ void task_motor::run (void) {
             driver->set_power(power->get());
          }
       }
+      runs++;
+      delay (100);
    }
-   runs++;
-   // TODO: delay might need to be longer. task priority not working if different.
-   delay (100);
 }
 
 /**
